@@ -35,13 +35,13 @@ public class ItemServiceImpl implements ItemService {
                item.setPrice((addItemRequest.getPrice()));
                Item savedItem = itemRepository.save(item);
                addItemResponse.setMessage("Item Added Successfully with ID :: " + savedItem.getId());
-               addItemResponse.setStatus("Success");
+               addItemResponse.setStatus(objectMapper.convertValue(HttpStatus.OK, String.class));
                addItemResponse.setStatusCode(objectMapper.convertValue(HttpStatus.OK.value(), Integer.class));
                addItemResponse.setData(objectMapper.convertValue(item, JsonNode.class));
            }
        }catch(Exception e){
-           log.info("Exception occurred while creating user: ", e);
-           addItemResponse.setStatus(e.getMessage());
+           log.info("Exception occurred while adding the item :: " + addItemRequest.getItemName(), e);
+           addItemResponse.setStatus(objectMapper.convertValue(HttpStatus.BAD_REQUEST, String.class));
            addItemResponse.setMessage("Failed to add Item :: " + e.getMessage());
            addItemResponse.setStatusCode(objectMapper.convertValue(HttpStatus.BAD_REQUEST.value(), Integer.class));
            addItemResponse.setData(null);

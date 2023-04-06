@@ -11,6 +11,7 @@ import lombok.*;
 public class AddItemResponse {
     private String status;
     private Integer statusCode;
-    private JsonNode data;
     private String message;
+    private JsonNode data;
+
 }

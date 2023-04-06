@@ -16,7 +16,7 @@ public class UserController {
 
     @Autowired
     ItemService itemService;
-    @GetMapping("/item/finaAll")
+    @GetMapping("/item/findall")
     public ResponseEntity<ItemResponse> findAllItems(){
         return new ResponseEntity<>(itemService.findAllItems(), HttpStatus.OK);
     }
